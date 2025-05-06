@@ -1,14 +1,8 @@
 import "./Contact.css";
 
 const Contact = () => {
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     // Handle form submission logic here (e.g., send data to an API)
-  //     console.log("Form submitted");
-  //   };
-
   return (
-    <div className="container">
+    <div className="myContainer">
       <div className="contact-us">Contact Us</div>
       <h1>Let's Start a Conversation</h1>
       <p className="description">
@@ -33,7 +27,7 @@ const Contact = () => {
         <input type="text" placeholder="Full Name" required />
         <input type="email" placeholder="Your Email" required />
         <select required>
-          <option value="" disabled>
+          <option value="" disabled selected>
             Query Related
           </option>
           <option value="general">General Inquiry</option>
@@ -41,7 +35,9 @@ const Contact = () => {
           <option value="other">Other</option>
         </select>
         <textarea placeholder="Message" required />
-        <button type="submit">Send Message</button>
+        <div className="btn">
+          <button type="submit">Send Message</button>
+        </div>
       </form>
     </div>
   );

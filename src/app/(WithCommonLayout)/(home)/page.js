@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import FeaturedPost from "@/components/home/FeaturedPost";
 import Abauts from "@/components/home/Abauts";
 import Catagory from "@/components/home/Catagory";
@@ -53,7 +54,7 @@ export default function Home() {
 
       {/* end .... */}
       <div className="container mx-auto">
-        <FeaturedPost />"
+        <FeaturedPost />
         <Abauts />
         <Catagory />
         <Discover />

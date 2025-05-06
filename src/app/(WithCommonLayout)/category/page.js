@@ -1,8 +1,7 @@
-import React from "react";
-import CategoryCom from "@/components/category/CategoryCom";
+import Category from "@/components/category/Category";
 
 const text = "Blog > Business ";
-function Category() {
+function CategoryFunc() {
   return (
     <div>
       <div className="bg-purple-100 py-10 mt-29 text-center">
@@ -15,12 +14,9 @@ function Category() {
           {text}
         </p>
       </div>
-
-      {/* Rest of the content */}
-      <CategoryCom />
-
+      <Category />
     </div>
   );
 }
 
-export default Category;
+export default CategoryFunc;

@@ -1,15 +1,15 @@
 import JoinNow from "@/components/aboutUs/JoinNow";
-import BlogPost from "@/components/blogPost/BlogPost";
-import Footer from "@/components/shared/Footer";
-import Navbar from "@/components/shared/Navbar";
+import Blogger from "@/components/blogPost/Blogger";
+import Hero from "@/components/blogPost/Hero";
+import ReadNext from "@/components/blogPost/ReadNext";
 
 const page = () => {
   return (
     <div>
-      <Navbar />
-      <BlogPost />
+      <Blogger />
+      <Hero />
+      <ReadNext />
       <JoinNow />
-      <Footer />
     </div>
   );
 };
