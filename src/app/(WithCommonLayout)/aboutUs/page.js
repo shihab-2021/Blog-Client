@@ -7,11 +7,9 @@ import Navbar from "@/components/shared/Navbar";
 const page = () => {
   return (
     <div>
-      <Navbar />
       <HeroSection />
       <AuthorList />
       <JoinNow />
-      <Footer />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import "./AuthorList.css";
-import authors from "../../TempData/authors.js";
+import authors from "../../TempData/authorData.js";
 
 const AuthorList = () => {
   return (

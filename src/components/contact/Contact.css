@@ -17,7 +17,7 @@ p {
   text-align: left;
 }
 
-.container {
+.myContainer {
   margin: 6rem auto;
   max-width: 800px;
   padding: 2.5rem;
@@ -103,8 +103,8 @@ h1 {
 }
 
 form {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   gap: 0.9375rem;
   margin-top: 2rem;
 }
@@ -120,6 +120,7 @@ textarea {
   color: #232536;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin: 8px auto;
 }
 
 input:focus,
@@ -135,7 +136,7 @@ textarea {
   resize: none;
 }
 
-button {
+.btn {
   padding: 0.9375rem;
   background: linear-gradient(90deg, #ffd050, #ffda7a);
   color: #232536;
@@ -146,20 +147,21 @@ button {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(255, 208, 80, 0.3);
+  flex: 1;
 }
 
-button:hover {
+.btn:hover {
   box-shadow: 0 6px 15px rgba(255, 208, 80, 0.5);
   background: linear-gradient(90deg, #ffda7a, #ffd050);
 }
 
-button:active {
+.btn:active {
   transform: translateY(0) scale(0.98);
   box-shadow: 0 2px 6px rgba(255, 208, 80, 0.3);
 }
 
 @media (max-width: 1024px) {
-  .container {
+  .myContainer {
     max-width: 90%;
     padding: 1.5rem;
     margin: 4rem auto;
@@ -198,14 +200,14 @@ button:active {
     padding: 0.75rem;
     font-size: 0.9375rem;
   }
-  button {
+  .btn {
     font-size: 1rem;
     padding: 0.75rem;
   }
 }
 
 @media (max-width: 768px) {
-  .container {
+  .myContainer {
     max-width: 95%;
     padding: 1rem;
     margin: 3rem auto;
@@ -249,7 +251,7 @@ button:active {
   textarea {
     height: 80px;
   }
-  button {
+  .btn {
     font-size: 0.9375rem;
     padding: 0.75rem;
   }

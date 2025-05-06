@@ -3,14 +3,14 @@ import "./Privacy.css";
 const Privacy = () => {
   return (
     <>
-      <div class="title">
+      <div className="title">
         <h1>Privacy Policy</h1>
         <h4>Last Updated on 27th January 2022</h4>
       </div>
-      <div class="container">
-        <div class="section">
-          <div class="section-title">Lorem ipsum dolor sit amet</div>
-          <div class="content">
+      <div className="myContainer">
+        <div className="section">
+          <div className="section-title">Lorem ipsum dolor sit amet</div>
+          <div className="content">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -33,12 +33,12 @@ const Privacy = () => {
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">
+        <div className="section">
+          <div className="section-title">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor.
           </div>
-          <div class="content">
+          <div className="content">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Non
@@ -53,9 +53,7 @@ const Privacy = () => {
               gravida dictum fusce ut placerat orci nulla. Neque convallis a
               cras semper auctor neque vitae tempus quam.
             </p>
-          </div>{" "}
-          <br />
-          <div class="content">
+            <br />
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Non
@@ -72,22 +70,6 @@ const Privacy = () => {
             </p>
           </div>
         </div>
-        {/* <div class="section">
-          <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Non
-            blandit massa enim nec. Scelerisque viverra mauris in aliquam sem.
-            At risus viverra adipiscing at in tellus. Sociis natoque penatibus
-            et magnis dis parturient montes. Ridiculus mus mauris vitae
-            ultricies leo. Neque egestas congue quisque egestas diam. Risus in
-            hendrerit gravida rutrum quisque non. Sit amet nulla facilisi morbi
-            tempus iaculis urna. Lorem sed risus ultricies tristique nulla
-            aliquet enim. Volutpat blandit aliquam etiam erat velit. Orci eu
-            lobortis elementum nibh. Ipsum suspendisse ultrices gravida dictum
-            fusce ut placerat orci nulla. Neque convallis a cras semper auctor
-            neque vitae tempus quam.
-          </div>
-        </div> */}
       </div>
     </>
   );
