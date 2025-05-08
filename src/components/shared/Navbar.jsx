@@ -56,7 +56,7 @@ const Navbar = () => {
           <Link href="/category" onClick={toggleMenu}>
             Category
           </Link>
-          <Link href="/about" onClick={toggleMenu}>
+          <Link href="/aboutUs" onClick={toggleMenu}>
             About Us
           </Link>
           <Link href="/contact" onClick={toggleMenu}>

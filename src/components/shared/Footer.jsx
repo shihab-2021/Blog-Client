@@ -19,7 +19,10 @@ function Footer() {
           <Link href="/blog" className="footer-link">
             Blog
           </Link>
-          <Link href="/about" className="footer-link">
+          <Link href="/category" className="footer-link">
+            Catagory
+          </Link>
+          <Link href="/aboutUs" className="footer-link">
             About Us
           </Link>
           <Link href="/contact" className="footer-link">

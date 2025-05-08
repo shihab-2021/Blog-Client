@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import "./FeaturedPost.css";
 
 // Dummy post data
 const posts = [
@@ -44,45 +45,43 @@ const posts = [
 
 // Reusable Post Card
 const PostCard = ({ author, date, title }) => (
-  <div className="border-b pb-4">
-    <p className="text-sm text-gray-500">
-      By <span className="text-amber-500">{author}</span> | {date}
+  <div className="post-card">
+    <p className="post-meta">
+      By <span className="post-meta-author">{author}</span> | {date}
     </p>
-    <p className="mt-1 text-gray-800">{title}</p>
+    <p className="post-title">{title}</p>
   </div>
 );
 
 const FeaturedPost = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-10 p-4 md:p-10 max-w-7xl mx-auto">
+    <div className="featured-container">
       {/* Featured Section */}
-      <div className="w-full md:w-2/3">
-        <h1 className="font-bold text-2xl md:text-4xl mb-6">Featured Post</h1>
-        <div className="border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+      <div className="featured-section">
+        <h1 className="featured-title">Featured Post</h1>
+        <div className="featured-card">
           <Image
             src="/item-hom.png"
             alt="Featured"
             width={1200}
             height={600}
-            className="w-full object-cover"
+            className="featured-image"
           />
-          <div className="p-6">
-            <p className="text-sm text-gray-500 font-medium">
-              By <span className="text-amber-500">John Doe</span> | May 23, 2022
+          <div className="featured-content">
+            <p className="featured-meta">
+              By <span className="featured-meta-author">John Doe</span> | May
+              23, 2022
             </p>
-            <h2 className="text-xl ml-6 md:text-2xl font-semibold mt-4">
+            <h2 className="featured-heading">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor.
             </h2>
-            <p className="mt-4 mb-8 ml-6 text-gray-700">
+            <p className="featured-text">
               Duis aute irure dolor in reprehenderit in voluptate velit esse
               cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
               cupidatat non proident.
             </p>
-            <Link
-              href="#"
-              className="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-6 rounded"
-            >
+            <Link href="#" className="read-more-btn">
               Read More
             </Link>
           </div>
@@ -90,14 +89,14 @@ const FeaturedPost = () => {
       </div>
 
       {/* All Posts Section */}
-      <div className="w-full md:w-1/3">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="font-bold text-2xl md:text-3xl">All Posts</h2>
-          <Link href="#" className="text-amber-500 text-sm hover:underline">
+      <div className="posts-section">
+        <div className="posts-header">
+          <h2 className="posts-title">All Posts</h2>
+          <Link href="#" className="view-all-link">
             View all
           </Link>
         </div>
-        <div className="space-y-6">
+        <div className="posts-list">
           {posts.map((post) => (
             <PostCard key={post.id} {...post} />
           ))}

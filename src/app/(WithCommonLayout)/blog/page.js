@@ -1,8 +1,7 @@
 import JoinNow from "@/components/aboutUs/JoinNow";
 import AllBlogs from "@/components/blog/AllBlogs";
+import Category2 from "@/components/blog/Category2";
 import Hero from "@/components/blog/Hero";
-
-import Sidebar from "@/components/category/Sidebar";
 import { categories } from "@/TempData/blogData";
 
 function Blog() {
@@ -10,8 +9,8 @@ function Blog() {
     <>
       <Hero />
       <AllBlogs />
-      <Sidebar categories={categories} />
       <JoinNow />
+      <Category2 categories={categories} />
     </>
   );
 }

@@ -1,0 +1,207 @@
+/* Base styles for the sidebar and categories section */
+.sidebar {
+  padding: 24px;
+  background-color: #ffffff;
+  width: 1700px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a3c5e;
+  margin-bottom: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.categories-section {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  justify-content: space-between;
+}
+
+/* Category item styles with animation */
+.category-item {
+  height: 250px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #f8fafc;
+  border: 1px solid #e0e7ff;
+  border-radius: 10px;
+  transition: background-color 0.3s,
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: slideFadeIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  animation-delay: calc(0.15s * var(--index));
+}
+
+/* Highlighted category (Startup) */
+/* .category-item.highlighted {
+  background-color: #ffd700;
+  border: none;
+} */
+
+/* Smoother slide-in and fade-in animation for category items */
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  background-color: #ffd700;
+}
+
+.category-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.category-icon:hover {
+  transform: scale(1.1);
+}
+
+.category-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a3c5e;
+  margin-bottom: 8px;
+  font-family: "Inter", sans-serif;
+}
+
+.category-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+  font-family: "Inter", sans-serif;
+}
+
+.no-categories {
+  font-size: 1rem;
+  color: #6b7280;
+  text-align: center;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+/* Responsive design for 1024px */
+@media (max-width: 1024px) {
+  .sidebar {
+    padding: 20px;
+    width: 100%;
+    max-width: 1024px;
+  }
+
+  .categories-section {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .category-item {
+    flex: 1 1 calc(50% - 10px);
+    padding: 16px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .category-name {
+    font-size: 1.125rem;
+  }
+
+  .category-description {
+    font-size: 0.85rem;
+  }
+
+  .category-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Responsive design for 768px */
+@media (max-width: 768px) {
+  .sidebar {
+    padding: 16px;
+    width: 100%;
+    max-width: 768px;
+  }
+
+  .categories-section {
+    gap: 16px;
+  }
+
+  .category-item {
+    flex: 1 1 calc(50% - 8px);
+    padding: 12px;
+  }
+
+  .section-title {
+    font-size: 1.375rem;
+  }
+
+  .category-name {
+    font-size: 1rem;
+  }
+
+  .category-description {
+    font-size: 0.825rem;
+  }
+
+  .category-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Responsive design for 320px */
+@media (max-width: 320px) {
+  .sidebar {
+    padding: 12px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .categories-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .category-item {
+    flex: 1 1 100%;
+    padding: 10px;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .category-name {
+    font-size: 0.95rem;
+  }
+
+  .category-description {
+    font-size: 0.8rem;
+  }
+
+  .category-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
