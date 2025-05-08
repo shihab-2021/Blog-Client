@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import "./AllBlogs.css";
+import { useGetAllBlogQuery } from "@/redux/features/blog/blogApi";
+import Link from "next/link";
 
 function AllBlogs() {
   const posts = [
@@ -57,6 +59,9 @@ function AllBlogs() {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const { data: blogs, refetch: blogRefetch } = useGetAllBlogQuery({
+    refetchOnReconnect: true,
+  });
 
   const handlePrev = () => {
     if (currentPage > 1) {
@@ -75,28 +80,37 @@ function AllBlogs() {
       <h1 className="blogs-title">All Posts</h1>
 
       <div className="blogs-grid">
-        {currentPosts.map((post) => (
-          <div key={post.id} className="blog-post">
-            <div className="blog-image-container">
-              <img src={post.img} alt={post.title} className="blog-image" />
-            </div>
-
-            <div className="blog-content">
-              <span className="blog-category">{post.category}</span>
-              <h2 className="blog-title">{post.title}</h2>
-              <p className="blog-desc">{post.desc}</p>
-
-              <div className="blog-meta">
-                By {post.author} | {post.date}
+        {blogs?.data?.map((post) => {
+          const createdAt = new Date(post?.createdAt);
+          return (
+            <div key={post._id} className="blog-post">
+              <div className="blog-image-container">
+                <img
+                  src={post.thumbnail}
+                  alt={post.title}
+                  className="blog-image"
+                />
               </div>
 
-              <div className="blog-stats">
-                <p>Like: {post.like}</p>
-                <p>Comment: {post.comments}</p>
+              <div className="blog-content">
+                <span className="blog-category">{post.category}</span>
+                <Link href={`/blogPost/${post?._id}`} className="blog-title">
+                  {post.title}
+                </Link>
+
+                <div className="blog-meta">
+                  By {post.author?.name} |{" "}
+                  {createdAt?.toUTCString()?.slice(0, -12)}
+                </div>
+
+                <div className="blog-stats">
+                  <p>Like: {post?.like?.length}</p>
+                  <p>Comment: {post.comment?.length}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="blogs-pagination">
