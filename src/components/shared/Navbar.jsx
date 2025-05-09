@@ -82,33 +82,32 @@ const Navbar = () => {
           {token ? (
             <div className="relative">
               <button
-                onClick={() => toggleProfile()}
+                onClick={toggleProfile}
                 className="flex items-center space-x-2 focus:outline-none cursor-pointer"
               >
                 {profile?.data?.profilePhoto ? (
                   <Image
                     src={profile?.data?.profilePhoto}
-                    // profile?.data?.name
                     alt="image"
                     className="h-10 w-10 rounded-full object-cover border"
                     width={50}
                     height={50}
                   />
                 ) : (
-                  <UserCircle2Icon className="h-10 w-10 text-gray-100" />
+                  <UserCircle2Icon className="h-10 w-10 text-white" />
                 )}
-                <span className="text-gray-50">{profile?.data?.name}</span>
+                <span className="text-white">{profile?.data?.name}</span>
               </button>
 
               {isProfileOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-[#1f2937] rounded-md shadow-lg py-1 z-50">
+                <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50">
                   <Link
                     href={
                       profile?.data?.role === "ADMIN"
                         ? "/dashboard/admin"
                         : "/dashboard/customer/profile"
                     }
-                    className="flex items-center gap-1 w-full px-4 py-2 text-sm text-gray-700 hover:bg-blue-50"
+                    className="flex items-center gap-1 w-full px-4 py-2 text-sm text-white hover:bg-gray-700"
                   >
                     <LayoutDashboardIcon className="h-5 w-5" />
                     <span>Dashboard</span>
@@ -118,7 +117,7 @@ const Navbar = () => {
                       dispatch(logout());
                       router.push("/");
                     }}
-                    className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-100 hover:text-gray-400 hover:bg-blue-50 gap-1"
+                    className="flex items-center w-full text-left px-4 py-2 text-sm text-white hover:text-gray-400 hover:bg-gray-700 gap-1"
                   >
                     <LogOutIcon className="h-5 w-5" />
                     <span>Sign out</span>
@@ -130,14 +129,14 @@ const Navbar = () => {
             <div className="flex items-center space-x-4">
               <Link
                 href="/login"
-                className="flex items-center space-x-1 text-gray-100 hover:text-amber-600"
+                className="flex items-center space-x-1 text-white hover:text-gray-400"
               >
                 <LogIn />
                 <span>Login</span>
               </Link>
               <Link
                 href="/register"
-                className="flex items-center space-x-1 bg-[#4b5563] hover:bg-[#374151] text-white px-4 py-2 rounded-md transition-colors"
+                className="flex items-center space-x-1 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors"
               >
                 <UserPlus />
                 <span>Register</span>

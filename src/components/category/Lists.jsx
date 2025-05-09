@@ -1,11 +1,10 @@
 import { blogPosts } from "../../TempData/blogData";
 import BlogItem from "./BlogList";
-import "./Category.css";
 
 const List = () => {
   return (
-    <div className="category-container">
-      <div className="blog-list">
+    <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-16 animate-fadeIn">
+      <div className="flex-1">
         {blogPosts.map((post) => (
           <BlogItem
             key={post.id}

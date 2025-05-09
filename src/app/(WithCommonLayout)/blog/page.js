@@ -9,8 +9,8 @@ function Blog() {
     <>
       <Hero />
       <AllBlogs />
-      <JoinNow />
       <Category2 categories={categories} />
+      <JoinNow />
     </>
   );
 }
