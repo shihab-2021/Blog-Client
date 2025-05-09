@@ -5,6 +5,7 @@ const UserBlogs = ({
   isAuthor,
   deleteBlog,
   refetchUserBlogs,
+  suspendBlog,
 }) => {
   return (
     <div className="max-w-4xl mx-auto p-4">
@@ -20,6 +21,7 @@ const UserBlogs = ({
             isAdmin={isAdmin}
             isAuthor={isAuthor}
             deleteBlog={deleteBlog}
+            suspendBlog={suspendBlog}
             refetchUserBlogs={refetchUserBlogs}
           />
         ))
@@ -50,6 +52,7 @@ const BlogCard = ({
   onToggleSuspend,
   isAuthor,
   deleteBlog,
+  suspendBlog,
   refetchUserBlogs,
 }) => {
   const {
@@ -60,7 +63,7 @@ const BlogCard = ({
     dislike = [],
     comment = [],
     tags = [],
-    isDeleted,
+    isPublic,
   } = blog;
 
   const handleDelete = async (id) => {
@@ -76,6 +79,30 @@ const BlogCard = ({
       if (willDelete) {
         try {
           const res = await deleteBlog(id).unwrap();
+          refetchUserBlogs();
+          toast.success(res.message, { id: toastId, duration: 2000 });
+        } catch (err) {
+          toast.error(err.data.message || "Something went wrong", {
+            id: toastId,
+            duration: 2000,
+          });
+        }
+      }
+    });
+  };
+
+  const handleSuspend = async (id) => {
+    const toastId = toast.loading("Suspending Blog....", { duration: 3000 });
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+      showCancelButton: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        try {
+          const res = await suspendBlog(id).unwrap();
           refetchUserBlogs();
           toast.success(res.message, { id: toastId, duration: 2000 });
         } catch (err) {
@@ -132,14 +159,14 @@ const BlogCard = ({
 
         {isAdmin && (
           <button
-            onClick={() => onToggleSuspend(_id, !isDeleted)}
-            className={`flex items-center gap-1 mt-2 px-4 py-2 rounded-lg text-sm font-medium ${
-              isDeleted
-                ? "bg-green-100 text-green-700 hover:bg-green-200"
-                : "bg-red-100 text-red-700 hover:bg-red-200"
-            }`}
+            onClick={() => handleSuspend(_id)}
+            className={`flex items-center gap-1 cursor-pointer mt-2 px-4 py-2 rounded-lg text-sm font-medium ${
+              isPublic
+                ? "focus:ring-green-700 bg-green-100 text-green-700 hover:bg-green-200"
+                : "focus:ring-red-700 bg-red-100 text-red-700 hover:bg-red-200"
+            } hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-95 transition-all duration-300 cursor-pointer`}
           >
-            {isDeleted ? (
+            {isPublic ? (
               <>
                 <ToggleRight size={25} className="text-green-500" />
                 Unsuspend
@@ -168,6 +195,14 @@ const BlogCard = ({
             >
               <Trash2 size={20} />
             </button>
+            {isPublic && (
+              <span
+                className=" bg-red-100 text-red-700 hover:bg-red-200 transition p-2 rounded-md cursor-not-allowed text-xs"
+                title="Suspended"
+              >
+                Suspended
+              </span>
+            )}
           </div>
         )}
       </div>

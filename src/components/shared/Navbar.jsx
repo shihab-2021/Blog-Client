@@ -103,9 +103,9 @@ const Navbar = () => {
                 <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50">
                   <Link
                     href={
-                      profile?.data?.role === "ADMIN"
+                      profile?.data?.role === "admin"
                         ? "/dashboard/admin"
-                        : "/dashboard/customer/profile"
+                        : `/dashboard/profile/${profile?.data?._id}`
                     }
                     className="flex items-center gap-1 w-full px-4 py-2 text-sm text-white hover:bg-gray-700"
                   >

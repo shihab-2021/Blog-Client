@@ -75,6 +75,13 @@ const blogApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["blogs"],
     }),
+    suspendBlog: builder.mutation({
+      query: (id) => ({
+        url: `/blogs/suspend/${id}`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["blogs"],
+    }),
   }),
 });
 
@@ -89,4 +96,5 @@ export const {
   useGetBlogsByUserQuery,
   useUpdateBlogMutation,
   useDeleteBlogMutation,
+  useSuspendBlogMutation,
 } = blogApi;

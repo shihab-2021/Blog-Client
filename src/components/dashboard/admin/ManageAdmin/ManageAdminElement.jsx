@@ -3,17 +3,11 @@ import Link from "next/link";
 import { toast } from "sonner";
 import Swal from "sweetalert2";
 
-const ManageUserElement = ({
-  data,
-  remainingUsers,
-  i,
-  deleteUser,
-  refetchUsers,
-}) => {
-  const deleteItem = (id) => {
+const ManageAdminElement = ({ data, remainingUsers, i, toggleUserRole }) => {
+  const removeAdmin = () => {
     Swal.fire({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this!",
+      text: "Once remove, user role will be changed!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -21,9 +15,9 @@ const ManageUserElement = ({
     }).then(async (willDelete) => {
       if (willDelete) {
         try {
-          const res = await deleteUser(id).unwrap();
+          const res = await toggleUserRole({ email: data?.email }).unwrap();
           if (res.success) {
-            refetchUsers();
+            remainingUsers();
             toast.success(res.message, { duration: 2000 });
           }
         } catch (err) {
@@ -35,7 +29,6 @@ const ManageUserElement = ({
       }
     });
   };
-
   return (
     <tr
       className={`font-inter text-gray-900 text-base animate-slideUp ${
@@ -61,13 +54,13 @@ const ManageUserElement = ({
         </Link>
         <button
           className="mx-2 bg-purple-600 text-white font-sen font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-purple-700 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 active:scale-95 transition-all duration-300 cursor-pointer"
-          onClick={() => deleteItem(data?._id)}
+          onClick={() => removeAdmin()}
         >
-          Delete
+          Remove
         </button>
       </td>
     </tr>
   );
 };
 
-export default ManageUserElement;
+export default ManageAdminElement;

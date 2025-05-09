@@ -1,13 +1,28 @@
 "use client";
+import { useProfileQuery } from "@/redux/features/auth/authApi";
+import { logout, useCurrentToken } from "@/redux/features/auth/authSlice";
+import {
+  File,
+  Home,
+  LayoutDashboardIcon,
+  UserCog2Icon,
+  UserLock,
+  UserPen,
+} from "lucide-react";
 /* eslint-disable @next/next/no-sync-scripts */
 import Head from "next/head";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const Layout = ({ children }) => {
   const [toggleButton, setToggleButton] = useState(true);
   const [screenSmall, setScreenSmall] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
+  const token = useSelector(useCurrentToken);
+  const { data: profile } = useProfileQuery(token);
+  const [routes, setRoutes] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowWidth(window.innerWidth);
@@ -22,6 +37,46 @@ const Layout = ({ children }) => {
   const handleClick = () => {
     setToggleButton(!toggleButton);
   };
+
+  useEffect(() => {
+    if (profile?.data?.email) {
+      if (profile?.data?.role === "admin") {
+        setRoutes(adminRoutes);
+      } else {
+        setRoutes(visitorRoutes);
+      }
+    }
+  }, [profile]);
+
+  const adminRoutes = [
+    {
+      path: "/dashboard/admin",
+      name: "Dashboard",
+      icon: LayoutDashboardIcon,
+    },
+    {
+      path: "/dashboard/admin/manageUser",
+      name: "Manage User",
+      icon: UserCog2Icon,
+    },
+    {
+      path: "/dashboard/admin/manageAdmin",
+      name: "Manage Admin",
+      icon: UserLock,
+    },
+    {
+      path: "/dashboard/admin/manageBlog",
+      name: "Manage Blog",
+      icon: File,
+    },
+  ];
+  const visitorRoutes = [
+    {
+      path: "/dashboard/customer/profile",
+      name: "My Profile",
+      icon: UserPen,
+    },
+  ];
 
   return (
     <>
@@ -38,7 +93,7 @@ const Layout = ({ children }) => {
                   id="toggleSidebarMobile"
                   // ariaExpanded="true"
                   // ariaControls="sidebar"
-                  className="lg:hidden mr-2 text-gray-100 hover:text-gray-200 cursor-pointer p-2 hover:bg-gray-600 focus:bg-gray-600 focus:ring-2 focus:ring-gray-600 rounded"
+                  className="lg:hidden mr-2 text-gray-900 cursor-pointer p-2 hover:bg-gray-200 rounded"
                   onClick={handleClick}
                 >
                   <svg
@@ -76,15 +131,6 @@ const Layout = ({ children }) => {
                     Dashboard
                   </h1>
                 </div>
-                {/* <div className="flex items-center">
-                  <button
-                    id="toggleSidebarMobileSearch"
-                    type="button"
-                    className="lg:hidden text-gray-500 hover:text-gray-900 hover:bg-gray-100 p-2 rounded-lg"
-                  >
-                    <span className="sr-only">Search</span>
-                  </button>
-                </div> */}
               </div>
             </div>
           </nav>
@@ -100,28 +146,31 @@ const Layout = ({ children }) => {
                 <div className="flex-1 flex flex-col pb-4 overflow-y-auto">
                   <div className="flex-1  divide-y space-y-1">
                     <ul className="space-y-2 px-3 py-2 text-white">
-                      <li>
-                        <Link
-                          href="/dashboard"
-                          className="text-base text-gray-900 hover:text-gray-100 font-normal rounded-lg flex items-center p-2 hover:bg-gray-600 group"
-                        >
-                          <svg
-                            className="w-6 h-6 text-gray-900 group-hover:text-gray-100 transition duration-75"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
+                      {routes?.map((route, index) => (
+                        <li key={index}>
+                          <Link
+                            href={route.path}
+                            className="text-base text-gray-900 hover:text-gray-100 font-normal rounded-lg flex items-center p-2 hover:bg-gray-600 group"
                           >
-                            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                          </svg>
-                          <span className="ml-3">Dashboard</span>
-                        </Link>
-                      </li>
+                            {route.icon && <route.icon />}
+                            {route.name && (
+                              <span className="ml-3">{route.name}</span>
+                            )}
+                          </Link>
+                        </li>
+                      ))}
+                      <Link
+                        href="/"
+                        className="text-base text-gray-900 hover:text-gray-100 font-normal rounded-lg flex items-center p-2 hover:bg-gray-600 group"
+                      >
+                        <Home />
+                        <span className="ml-3">Home</span>
+                      </Link>
 
                       <li>
                         <a
                           className="block p-2 cursor-pointer mb-2 leading-loose text-xs text-center text-white font-semibold bg-[#e61d4f] hover:bg-red-700  rounded-xl"
-                          //   onClick={logout}
+                          onClick={() => dispatch(logout())}
                         >
                           Sign Out
                         </a>

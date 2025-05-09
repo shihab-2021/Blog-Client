@@ -10,6 +10,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-sansita: "sansita";
+  --font-lobster: "lobster";
+  --font-arima: "arima";
+  --font-oleo_script: "oleo_script";
 }
 
 @media (prefers-color-scheme: dark) {

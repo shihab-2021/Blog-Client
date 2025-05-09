@@ -26,7 +26,20 @@ const authApi = baseApi.injectEndpoints({
       }),
       providesTags: ["profile"],
     }),
+    toggleUserRole: builder.mutation({
+      query: (userInfo) => ({
+        url: "/auth/user-role",
+        method: "PUT",
+        body: userInfo,
+      }),
+      invalidatesTags: ["users"],
+    }),
   }),
 });
 
-export const { useLoginMutation, useSignupMutation, useProfileQuery } = authApi;
+export const {
+  useLoginMutation,
+  useSignupMutation,
+  useProfileQuery,
+  useToggleUserRoleMutation,
+} = authApi;
