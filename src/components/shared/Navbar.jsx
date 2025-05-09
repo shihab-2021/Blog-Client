@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import "./Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useProfileQuery } from "@/redux/features/auth/authApi";
 import { logout, useCurrentToken } from "@/redux/features/auth/authSlice";
@@ -14,89 +13,104 @@ import {
   UserCircle2Icon,
   UserPlus,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const token = useSelector(useCurrentToken);
   const { data: profile } = useProfileQuery(token);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const dispatch = useDispatch();
+  const router = useRouter();
 
+  const toggleMenu = () => setIsOpen(!isOpen);
   const toggleProfile = () => setIsProfileOpen(!isProfileOpen);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <header>
-      <nav>
-        <div className="left">
-          <Link href="/" className="logo">
+    <header className="fixed top-0 w-full bg-gray-800 z-50 shadow-md">
+      <nav className="max-w-[1700px] mx-auto flex items-center justify-between flex-wrap p-4">
+        {/* Logo */}
+        <div className="flex items-center flex-shrink-0 text-white mr-6">
+          <Link href="/" className="font-bold text-xl">
             LOGO
           </Link>
         </div>
 
-        <form className="search-form" role="search">
-          <input type="search" placeholder="Search" aria-label="Search" />
-          <button type="submit">Search</button>
-        </form>
-
-        <button
-          className="nav-toggle"
-          aria-label="Toggle navigation"
-          onClick={toggleMenu}
-        >
-          <svg
-            className="icon"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+        {/* Mobile Toggle */}
+        <div className="block lg:hidden">
+          <button
+            onClick={toggleMenu}
+            className="text-white focus:outline-none"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}
-            />
-          </svg>
-        </button>
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+              />
+            </svg>
+          </button>
+        </div>
 
-        <div className={`nav-links ${isOpen ? "open" : ""}`}>
-          <Link href="/" onClick={toggleMenu}>
+        {/* Nav Links */}
+        <div
+          className={`w-full lg:w-auto lg:flex  ${
+            isOpen ? "block" : "hidden"
+          } flex-col lg:flex-row items-center bg-gray-800 lg:bg-transparent mt-4 lg:mt-0`}
+       >
+          <Link href="/" className="text-white px-4 py-2 hover:text-gray-300">
             Home
           </Link>
-          <Link href="/blog" onClick={toggleMenu}>
+          <Link
+            href="/blog"
+            className="text-white px-4 py-2 hover:text-gray-300"
+          >
             Blog
           </Link>
-          <Link href="/category" onClick={toggleMenu}>
+          <Link
+            href="/category"
+            className="text-white px-4 py-2 hover:text-gray-300"
+          >
             Category
           </Link>
-          <Link href="/aboutUs" onClick={toggleMenu}>
+          <Link
+            href="/aboutUs"
+            className="text-white px-4 py-2 hover:text-gray-300"
+          >
             About Us
           </Link>
-          <Link href="/contact" onClick={toggleMenu}>
+          <Link
+            href="/contact"
+            className="text-white px-4 py-2 hover:text-gray-300"
+          >
             Contact Us
           </Link>
+
           {token ? (
             <div className="relative">
               <button
                 onClick={toggleProfile}
-                className="flex items-center space-x-2 focus:outline-none cursor-pointer"
+                className="flex items-center gap-2 text-white px-4 py-2 focus:outline-none"
               >
                 {profile?.data?.profilePhoto ? (
                   <Image
                     src={profile?.data?.profilePhoto}
-                    alt="image"
-                    className="h-10 w-10 rounded-full object-cover border"
-                    width={50}
-                    height={50}
+                    alt="profile"
+                    width={40}
+                    height={40}
+                    className="rounded-full object-cover border w-10 h-10"
                   />
                 ) : (
-                  <UserCircle2Icon className="h-10 w-10 text-white" />
+                  <UserCircle2Icon className="w-8 h-8 text-white" />
                 )}
-                <span className="text-white">{profile?.data?.name}</span>
+                <span>{profile?.data?.name}</span>
               </button>
 
               {isProfileOpen && (
@@ -107,43 +121,63 @@ const Navbar = () => {
                         ? "/dashboard/admin"
                         : `/dashboard/profile/${profile?.data?._id}`
                     }
-                    className="flex items-center gap-1 w-full px-4 py-2 text-sm text-white hover:bg-gray-700"
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-white hover:bg-gray-700"
                   >
-                    <LayoutDashboardIcon className="h-5 w-5" />
-                    <span>Dashboard</span>
+                    <LayoutDashboardIcon className="w-4 h-4" />
+                    Dashboard
                   </Link>
                   <button
                     onClick={() => {
                       dispatch(logout());
                       router.push("/");
                     }}
-                    className="flex items-center w-full text-left px-4 py-2 text-sm text-white hover:text-gray-400 hover:bg-gray-700 gap-1"
+                    className="flex items-center gap-2 w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700"
                   >
-                    <LogOutIcon className="h-5 w-5" />
-                    <span>Sign out</span>
+                    <LogOutIcon className="w-4 h-4" />
+                    Sign out
                   </button>
                 </div>
               )}
             </div>
           ) : (
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 px-4 py-2">
               <Link
                 href="/login"
-                className="flex items-center space-x-1 text-white hover:text-gray-400"
+                className="flex items-center gap-1 text-white hover:text-gray-300"
               >
-                <LogIn />
+                <LogIn className="w-5 h-5" />
                 <span>Login</span>
               </Link>
               <Link
                 href="/register"
-                className="flex items-center space-x-1 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors"
+                className="flex items-center gap-1 px-4 py-2 rounded bg-gray-600 hover:bg-gray-700 text-white transition"
               >
-                <UserPlus />
+                <UserPlus className="w-5 h-5" />
                 <span>Register</span>
               </Link>
             </div>
           )}
         </div>
+
+        {/* Search bar */}
+
+        <form
+          className="container mx-auto mt-4 flex items-center justify-center space-x-4"
+          role="search"
+        >
+          <input
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            className="w-1/2 p-2 rounded-lg border-none focus:outline-none focus:ring-2 focus:ring-gray-700 bg-gray-200 text-black"
+          />
+          <button
+            type="submit"
+            className="bg-gray-700 hover:bg-gray-600 text-white py-2 px-6 rounded-lg"
+          >
+            Search
+          </button>
+        </form>
       </nav>
     </header>
   );
