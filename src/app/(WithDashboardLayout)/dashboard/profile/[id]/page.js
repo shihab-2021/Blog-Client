@@ -14,6 +14,7 @@ import { useProfileQuery } from "@/redux/features/auth/authApi";
 import {
   useDeleteBlogMutation,
   useGetBlogsByUserQuery,
+  useSuspendBlogMutation,
 } from "@/redux/features/blog/blogApi";
 import UserBlogs from "@/components/dashboard/user/UserBlogs";
 
@@ -37,6 +38,7 @@ const UserDetailsPage = ({ params }) => {
     refetchOnReconnect: true,
   });
   const [deleteBlog] = useDeleteBlogMutation();
+  const [suspendBlog] = useSuspendBlogMutation();
 
   const openModal = () => dialogRef.current?.showModal();
   const closeModal = () => dialogRef.current?.close();
@@ -109,7 +111,7 @@ const UserDetailsPage = ({ params }) => {
   }, [params]);
   return (
     <div>
-      <div className="relative bg-white shadow-lg rounded-2xl max-w-md w-full p-6 text-center mx-auto">
+      <div className="relative bg-white border border-gray-100 shadow-lg rounded-2xl max-w-md w-full p-6 text-center mx-auto">
         {profile?.data?._id === userInfo?.data?._id && (
           <button
             className="absolute bg-gray-100 top-4 right-4 text-[#FFBC00] hover:text-amber-500 cursor-pointer transition p-2 rounded-md"
@@ -224,6 +226,7 @@ const UserDetailsPage = ({ params }) => {
         isAdmin={userInfo?.data?.role === "admin" ? true : false}
         isAuthor={profile?.data?._id === userInfo?.data?._id ? true : false}
         deleteBlog={deleteBlog}
+        suspendBlog={suspendBlog}
         refetchUserBlogs={refetchUserBlogs}
       />
     </div>

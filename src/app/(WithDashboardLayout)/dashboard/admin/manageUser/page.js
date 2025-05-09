@@ -30,7 +30,7 @@ const ManageUserMain = () => {
             <tr className="border-b-2 py-3">
               <th>Name</th>
               <th>Email</th>
-              <th>Phone</th>
+              <th>Avatar</th>
             </tr>
           </thead>
           <tbody className="">
@@ -38,8 +38,8 @@ const ManageUserMain = () => {
               <div>Loading...</div>
             ) : (
               users?.data?.map((user) => {
-                if (user.role == "user") i++;
-                return user.role == "user" ? (
+                if (user.role == "user" && !user.isDeleted) i++;
+                return user.role == "user" && !user.isDeleted ? (
                   <ManageUserElement
                     remainingUsers={remainingUsers}
                     data={user}

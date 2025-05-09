@@ -5,62 +5,16 @@ import { useGetAllBlogQuery } from "@/redux/features/blog/blogApi";
 import Link from "next/link";
 
 function AllBlogs() {
-  const posts = [
-    {
-      id: 1,
-      author: "John Doe",
-      title: "Design tips for designers that cover everything you need",
-      desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
-      img: "/blogPhoto1.png",
-      date: "May 23, 2022",
-      category: "Startup",
-      like: 250,
-      comments: 31,
-    },
-    {
-      id: 2,
-      author: "Smith Doe",
-      title: "How to build rapport with your web design clients",
-      desc: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
-      img: "/blogPhoto2.png",
-      date: "May 23, 2022",
-      category: "Business",
-      like: 409,
-      comments: 20,
-    },
-    {
-      id: 3,
-      author: "Zack Doe",
-      title: "Logo design trends to avoid in 2022",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      img: "/blogPhoto3.png",
-      date: "May 23, 2022",
-      category: "Startup",
-      like: 179,
-      comments: 29,
-    },
-    {
-      id: 4,
-      author: "John Doe",
-      title: "Design tips for designers that cover everything you need",
-      desc: "8 Figma design systems you can download for free today.",
-      img: "/blogPhoto4.png",
-      date: "May 23, 2022",
-      category: "Technology",
-      like: 210,
-      comments: 41,
-    },
-  ];
+  const { data: blogs, refetch: blogRefetch } = useGetAllBlogQuery({
+    refetchOnReconnect: true,
+  });
 
   const postsPerPage = 2;
   const [currentPage, setCurrentPage] = useState(1);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-  const { data: blogs, refetch: blogRefetch } = useGetAllBlogQuery({
-    refetchOnReconnect: true,
-  });
+  const currentPosts = blogs?.data?.slice(indexOfFirstPost, indexOfLastPost);
 
   const handlePrev = () => {
     if (currentPage > 1) {
@@ -69,7 +23,7 @@ function AllBlogs() {
   };
 
   const handleNext = () => {
-    if (currentPage < Math.ceil(posts.length / postsPerPage)) {
+    if (currentPage < Math.ceil(blogs?.data?.length / postsPerPage)) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -81,7 +35,7 @@ function AllBlogs() {
       </h1>
 
       <div className="grid gap-10">
-        {blogs?.data?.map((post, index) => {
+        {currentPosts?.map((post, index) => {
           const createdAt = new Date(post?.createdAt);
           return (
             <div
@@ -132,7 +86,9 @@ function AllBlogs() {
         <button
           className="bg-gradient-to-r from-amber-500 to-yellow-400 text-white font-sen font-semibold py-3 px-8 rounded-md shadow-lg hover:from-amber-600 hover:to-yellow-500 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2 active:scale-95 transition-all duration-300 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:shadow-none"
           onClick={handleNext}
-          disabled={currentPage === Math.ceil(posts.length / postsPerPage)}
+          disabled={
+            currentPage === Math.ceil(blogs?.data?.length / postsPerPage)
+          }
         >
           Next
         </button>
