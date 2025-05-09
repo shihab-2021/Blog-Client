@@ -48,7 +48,7 @@ const LoginPage = () => {
     <>
       <Suspense>
         <div className="min-h-screen flex justify-center items-center font-arima text-black">
-          <div className="border-2 border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
+          <div className="border-2 border-gray-300 rounded-xl max-w-md w-full p-5">
             <div className="flex items-center space-x-4 mb-4">
               <div>
                 <h1 className="text-xl font-semibold">Sign In</h1>
@@ -58,23 +58,27 @@ const LoginPage = () => {
               </div>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email" className="block text-sm font-medium">
+                Email
+              </label>
               <input
                 {...register("email")}
                 type="email"
-                className="p-2 mb-2 border rounded w-full text-lg"
+                className="p-2 mb-2 border border-gray-300 rounded w-full text-lg"
                 required
               />
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password" className="block text-sm font-medium">
+                Password
+              </label>
               <input
                 {...register("password")}
                 type="password"
-                className="p-2 mb-2 border rounded w-full text-lg"
+                className="p-2 mb-2 border border-gray-300 rounded w-full text-lg"
                 required
               />
 
               <input
-                className="bg-[#4b5563] hover:bg-[#374151] cursor-pointer text-lg font-bold w-full my-2 rounded text-white px-3 py-2"
+                className="bg-gray-600 hover:bg-gray-700 cursor-pointer text-lg font-bold w-full my-2 rounded text-white px-3 py-2 transition-colors"
                 type="submit"
                 value={"Signin"}
               />
@@ -83,7 +87,7 @@ const LoginPage = () => {
               Do not have any account?{" "}
               <Link
                 href="/register"
-                className="text-blue-400 underline font-semibold hover:text-blue-500 "
+                className="text-blue-400 underline font-semibold hover:text-blue-500"
               >
                 Register
               </Link>

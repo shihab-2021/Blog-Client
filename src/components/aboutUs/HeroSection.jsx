@@ -1,60 +1,87 @@
-import "./HeroSection.css";
-
 const HeroSection = () => {
   return (
     <>
-      <div className="header">
-        <div className="left-header">
-          <h3 className="about-us-text1">ABOUT US</h3>
-          <h1 className="about-us-text2">
-            We are a team of content writers who share their learnings
-          </h1>
-        </div>
-        <div className="right-header">
-          <p className="about-us-text3">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
+      <div className="flex flex-col items-center max-w-[1700px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 gap-6 sm:gap-8 mt-8 sm:mt-12 lg:mt-16">
+        <div className="flex flex-col sm:flex-row justify-between items-center w-full gap-6">
+          <div className="flex flex-col justify-center items-center w-full sm:w-1/2 p-6 bg-white hover:shadow-sm transition-shadow duration-300">
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-medium text-gray-800 tracking-wider mb-4">
+              ABOUT US
+            </h3>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 tracking-tight text-center">
+              We are a team of content writers who share their learnings
+            </h1>
+          </div>
+          <div className="w-full sm:w-1/2 p-6">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed text-justify">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
         </div>
       </div>
-      <div className="hero-section">
-        <div className="box">
-          <div className="sqr">
-            <h2>12+</h2>
-            <p>Blogs Published</p>
+
+      <div
+        className="max-w-[1700px] w-full mx-auto h-[300px] sm:h-[400px] md:h-[500px] bg-cover bg-center relative"
+        style={{ backgroundImage: "url('/Resources/aboutUs/About-Hero.png')" }}
+      >
+        <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-[600px] sm:max-w-[630px] h-28 sm:h-32 lg:h-36 bg-yellow-400 flex justify-around items-center shadow-md hover:-translate-y-1 transition-transform duration-300">
+          <div className="text-center">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800">
+              12+
+            </h2>
+            <p className="text-sm sm:text-base text-gray-800">
+              Blogs Published
+            </p>
           </div>
-          <div className="sqr">
-            <h2>18K+</h2>
-            <p>Views on Finsweet</p>
+          <div className="text-center">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800">
+              18K+
+            </h2>
+            <p className="text-sm sm:text-base text-gray-800">
+              Views on Finsweet
+            </p>
           </div>
-          <div className="sqr">
-            <h2>30K+</h2>
-            <p>Total active Users</p>
+          <div className="text-center">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800">
+              30K+
+            </h2>
+            <p className="text-sm sm:text-base text-gray-800">
+              Total active Users
+            </p>
           </div>
         </div>
         <img
           src="/Resources/aboutUs/Line.png"
           alt="Line Image"
-          className="line-img"
+          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[90%] sm:w-[80%] lg:w-[960px] h-6 sm:h-7 lg:h-8"
         />
       </div>
-      <div className="mission">
-        <div className="left-mission">
-          <h3>OUR MISSION</h3>
-          <h1>Creating valuable content for creatives all around the world</h1>
-          <p>
+
+      <div className="flex flex-col lg:flex-row justify-between items-center max-w-[1700px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-purple-50 my-12">
+        <div className="w-full lg:w-1/2 p-6">
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-medium text-gray-800 tracking-wider mb-4">
+            OUR MISSION
+          </h3>
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 tracking-tight mb-4">
+            Creating valuable content for creatives all around the world
+          </h1>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Non
             blandit massa enim nec. Scelerisque viverra mauris in aliquam sem.
             At risus viverra adipiscing at in tellus.
           </p>
         </div>
-        <div className="right-vision">
-          <h3>OUR VISION</h3>
-          <h1>A platform that empowers individuals to improve</h1>
-          <p>
+        <div className="w-full lg:w-1/2 p-6">
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-medium text-gray-800 tracking-wider mb-4">
+            OUR VISION
+          </h3>
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 tracking-tight mb-4">
+            A platform that empowers individuals to improve
+          </h1>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Non
             blandit massa enim nec. Scelerisque viverra mauris in aliquam sem.
@@ -62,14 +89,17 @@ const HeroSection = () => {
           </p>
         </div>
       </div>
-      <div className="team">
-        <div className="left-team">
-          <h3>OUR TEAM</h3>
-          <h1>
+
+      <div className="flex flex-col lg:flex-row justify-between items-center max-w-[1700px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 my-12 shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div className="w-full lg:w-1/2 p-6">
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-medium text-gray-800 tracking-wider mb-4">
+            OUR TEAM
+          </h3>
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 tracking-tight mb-4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt.
           </h1>
-          <p>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed border-b-4 border-yellow-400 pb-4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -77,35 +107,38 @@ const HeroSection = () => {
             reprehenderit in voluptate velit esse cillum dolore eu fugiat.
           </p>
         </div>
-        <div className="right-team">
+        <div className="w-full lg:w-1/2 p-6">
           <img
-            src="\Resources\aboutUs\Hand.png"
+            src="/Resources/aboutUs/Hand.png"
             alt="Hand Img"
-            className="hand-img"
+            className="w-full h-auto rounded-lg"
           />
         </div>
       </div>
-      <div className="blog">
-        <div className="left-blog">
-          <img
-            src="\Resources\aboutUs\Blog.png"
-            alt="Hand Img"
-            className="hand-img"
-          />
-        </div>
-        <div className="right-blog">
-          <h3>OUR TEAM</h3>
-          <h1>
+
+      <div className="flex flex-col lg:flex-row-reverse justify-between items-center max-w-[1700px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 my-12 shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div className="w-full lg:w-1/2 p-6">
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-medium text-gray-800 tracking-wider mb-4">
+            OUR TEAM
+          </h3>
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 tracking-tight mb-4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt.
           </h1>
-          <p>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed border-b-4 border-purple-600 pb-4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat. Duis aute irure dolor in
             reprehenderit in voluptate velit esse cillum dolore eu fugiat.
           </p>
+        </div>
+        <div className="w-full lg:w-1/2 p-6">
+          <img
+            src="/Resources/aboutUs/Blog.png"
+            alt="Blog Img"
+            className="w-full h-auto rounded-lg"
+          />
         </div>
       </div>
     </>

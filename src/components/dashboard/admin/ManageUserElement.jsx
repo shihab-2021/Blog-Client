@@ -33,31 +33,25 @@ const ManageUserElement = ({
         }
       }
     });
-    // const agree = window.confirm("Are you sure you want to delete this user?");
-
-    // if (agree) {
-    //   remainingUsers(data._id);
-    //   fetch(`https://universal-hostel-api.onrender.com/users/${data._id}`, {
-    //     method: "DELETE",
-    //   })
-    //     .then((res) => res.json())
-    //     .then((data) => console.log(data));
-    // }
   };
+
   return (
-    <tr className={`${i % 2 && "bg-gray-100"}`}>
-      <td className="p-2">{data.name}</td>
-      <td className="p-2">{data.email}</td>
-      <td className="p-2">{data.phone}</td>
-      <td className="float-right p-2">
+    <tr
+      className={`font-inter text-gray-900 text-base animate-slideUp ${
+        i % 2 ? "bg-gray-50" : "bg-white"
+      } hover:bg-purple-50 transition-colors duration-300`}
+    >
+      <td className="p-4">{data.name}</td>
+      <td className="p-4">{data.email}</td>
+      <td className="p-4">{data.phone}</td>
+      <td className="p-4 text-right">
         <Link href={`/dashboard/profile/${data._id}`}>
-          <button className="mx-2 bg-green-400 py-1 px-3 text-gray-800 font-bold rounded hover:bg-green-600 cursor-pointer">
+          <button className="mx-2 bg-amber-500 text-gray-900 font-sen font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-amber-600 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 active:scale-95 transition-all duration-300">
             View
           </button>
         </Link>
-
         <button
-          className="mx-2 bg-red-400 py-1 px-3 text-gray-800 font-bold rounded hover:bg-red-600 cursor-pointer"
+          className="mx-2 bg-purple-600 text-white font-sen font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-purple-700 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2 active:scale-95 transition-all duration-300"
           onClick={() => deleteItem(data?._id)}
         >
           Delete
