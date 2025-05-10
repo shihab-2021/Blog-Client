@@ -14,7 +14,18 @@ function AllBlogs() {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = blogs?.data?.slice(indexOfFirstPost, indexOfLastPost);
+
+  const filteredBlogs = blogs?.data?.filter((blog) => {
+    const matchesSearch = blog?.title
+      ?.toLowerCase()
+      .includes(searchTerm?.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "all" || blog.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  const currentPosts = filteredBlogs?.slice(indexOfFirstPost, indexOfLastPost);
 
   const handlePrev = () => {
     if (currentPage > 1) {

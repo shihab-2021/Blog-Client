@@ -82,6 +82,20 @@ const blogApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["blogs"],
     }),
+    getAdminDashboardStats: builder.query({
+      query: () => ({
+        url: `/blogs/dashboard-stats`,
+        method: "GET",
+      }),
+      providesTags: [],
+    }),
+    suspendComment: builder.mutation({
+      query: (data) => ({
+        url: `/blogs/comment-suspend/blog/${data?.blogId}/comment/${data?.commentId}`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["blogs"],
+    }),
   }),
 });
 
@@ -97,4 +111,6 @@ export const {
   useUpdateBlogMutation,
   useDeleteBlogMutation,
   useSuspendBlogMutation,
+  useGetAdminDashboardStatsQuery,
+  useSuspendCommentMutation,
 } = blogApi;

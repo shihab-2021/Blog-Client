@@ -2,14 +2,21 @@
 import {
   useAddCommentMutation,
   useGetBlogCommentsQuery,
+  useSuspendCommentMutation,
 } from "@/redux/features/blog/blogApi";
 import { useState } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
+import { ToggleLeft, ToggleRight } from "lucide-react";
+import { useSelector } from "react-redux";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
+import { useProfileQuery } from "@/redux/features/auth/authApi";
 
 const Hero = ({ blogData }) => {
-  const [comment, setComment] = useState("");
+  const [commentText, setCommentText] = useState("");
   const [addComment, { isLoading }] = useAddCommentMutation();
+  const [suspendComment, { isLoading: loadingSuspendComment }] =
+    useSuspendCommentMutation();
   const { data: comments, refetch: commentRefetch } = useGetBlogCommentsQuery(
     blogData?.blogId,
     {
@@ -17,20 +24,37 @@ const Hero = ({ blogData }) => {
       refetchOnReconnect: true,
     }
   );
+  const token = useSelector(useCurrentToken);
+  const { data: profile } = useProfileQuery(token);
 
   const handleCommentSubmit = async () => {
     try {
-      const commentData = { comment: comment, blogId: blogData?.blogId };
+      const commentData = { comment: commentText, blogId: blogData?.blogId };
       const res = await addComment(commentData);
       if (res?.data?.success) {
         commentRefetch();
-        setComment("");
+        setCommentText("");
         toast.success("Comment successfully added!");
       }
     } catch (error) {
       toast.error("Something went wrong!");
     }
   };
+
+  const handleSuspendComment = async (blogId, commentId) => {
+    console.log(commentId);
+    try {
+      const res = await suspendComment({ blogId, commentId });
+      if (res?.data?.success) {
+        commentRefetch();
+        toast.success("Comment suspend updated!");
+      }
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
+  };
+
+  console.log(comments?.data);
 
   return (
     <>
@@ -63,8 +87,8 @@ const Hero = ({ blogData }) => {
             placeholder="Write a comment"
             className="w-full border border-gray-300 rounded-lg p-4 mb-4 resize-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
             rows={4}
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
+            value={commentText}
+            onChange={(e) => setCommentText(e.target.value)}
           />
           <button
             onClick={handleCommentSubmit}
@@ -108,7 +132,31 @@ const Hero = ({ blogData }) => {
                   <p className="py-4 text-gray-600 font-inter">
                     {comment?.comment || "Very Nice try it"}
                   </p>
-                  <hr className="border-gray-200" />
+                  {profile?.data?.role === "admin" && (
+                    <button
+                      onClick={() =>
+                        handleSuspendComment(blogData?.blogId, comment?._id)
+                      }
+                      className={`flex items-center gap-1 cursor-pointer mt-2 px-4 py-2 rounded-lg text-sm font-medium ${
+                        comment?.isSuspended
+                          ? "focus:ring-green-700 bg-green-100 text-green-700 hover:bg-green-200"
+                          : "focus:ring-red-700 bg-red-100 text-red-700 hover:bg-red-200"
+                      } hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-95 transition-all duration-300 cursor-pointer`}
+                    >
+                      {comment?.isSuspended ? (
+                        <>
+                          <ToggleRight size={25} className="text-green-500" />
+                          Unsuspend
+                        </>
+                      ) : (
+                        <>
+                          <ToggleLeft size={25} className="text-red-500" />
+                          Suspend
+                        </>
+                      )}
+                    </button>
+                  )}
+                  <hr className="border-gray-400 w-full mt-2" />
                 </div>
               </div>
             );
