@@ -3,23 +3,18 @@ import React from "react";
 function Hero() {
   return (
     <>
-      <div className="mt-10 bg-[url('/Resources/home/Hero.png')] bg-cover bg-center bg-no-repeat bg-fixed">
+      <div className="my-29 bg-[url('/Resources/home/Hero.png')] bg-cover bg-center bg-no-repeat bg-fixed">
         <div className="mx-27 flex flex-col justify-center h-screen">
           <p className="mb-8 text-base font-light tracking-wider text-white md:text-xl">
-            Posted on startup
+            Create Your Own Blogging World
           </p>
-          <p className="mb-4 text-4xl font-semibold text-white md:text-6xl">
-            Step-by-step guide to
+          <p className="mb-4 text-2xl font-semibold text-white md:text-4xl">
+          A Complete Blogging Platform From Writing to Full Control
           </p>
-          <p className="mb-4 text-4xl font-semibold text-white md:text-6xl">
-            great font pairs
-          </p>
-          <p className="mb-4 text-base font-semibold tracking-tight text-white md:text-xl">
-            By <span className="text-amber-400">James West</span> | May 23, 2022
-          </p>
+        
+          
           <p className="mb-4 text-base font-semibold leading-loose text-white md:text-xl">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+         This blog application is designed to provide users with a seamless, secure, and interactive writing experience. You can create, edit, and publish your own blog posts, read others' content, and engage through comments. As an admin, you’ll have full control over user management, content moderation, and site settings. Built with a mobile-responsive layout, strong security features, and SEO-friendly structure — this platform ensures your blog is powerful, user-friendly, and efficient from every angle.
           </p>
           <div>
             <a

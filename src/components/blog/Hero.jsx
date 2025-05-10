@@ -8,17 +8,13 @@ const Hero = () => {
           <p className="font-inter uppercase text-sm md:text-base tracking-widest text-purple-600 font-bold">
             Featured Post
           </p>
-          <h2 className="font-sen font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 leading-tight hover:text-purple-600 transition-all duration-300">
-            Step-by-step guide to choosing great font pairs
+          <h2 className="font-sen font-bold text-2xl sm:text-4xl lg:text-4xl text-gray-900 leading-tight hover:text-purple-600 transition-all duration-300">
+          Discover Stories That Inspire, Inform, and Engage
           </h2>
-          <p className="font-inter text-gray-600 text-base md:text-lg">
-            By <span className="text-amber-500 font-semibold">James West</span>{" "}
-            | May 23, 2022
-          </p>
+          
           <p className="font-inter text-gray-600 text-base md:text-lg leading-relaxed max-w-xl">
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident.
+           Dive into our featured post, handpicked from the community to bring you the most insightful, creative, and meaningful content. Whether it's personal experiences, tutorials, or thought-provoking opinions — our featured blogs reflect the voice of real creators with something valuable to share.
+
           </p>
           <Link href="#">
             <button className="bg-gradient-to-r from-amber-500 to-yellow-400 text-white font-sen font-semibold py-3 px-8 text-base md:text-lg rounded-md shadow-lg hover:from-amber-600 hover:to-yellow-500 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2 active:scale-95 transition-all duration-300">
