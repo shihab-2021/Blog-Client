@@ -44,6 +44,7 @@ const LoginPage = () => {
       }
     } catch (err) {
       console.error(err);
+      toast.error("Account not found! Please register.");
     }
   };
   return (

@@ -5,6 +5,7 @@ import {
   useAddLikeMutation,
 } from "@/redux/features/blog/blogApi";
 import { toast } from "sonner";
+import Image from "next/image";
 
 const Blogger = ({ headerData }) => {
   const [addLike, { isLoading: isLoadingLike }] = useAddLikeMutation();
@@ -38,7 +39,9 @@ const Blogger = ({ headerData }) => {
   return (
     <div className="max-w-[936px] mx-auto mt-20 mb-4 px-4 sm:px-6 lg:px-8">
       <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md animate-slideUp">
-        <img
+        <Image
+          width={100}
+          height={100}
           src={headerData?.avatar || "/Resources/blogPost/Author.png"}
           alt="Author Avatar"
           className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border border-gray-300 mb-4"

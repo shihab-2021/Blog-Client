@@ -149,9 +149,9 @@ const Navbar = () => {
                 onClick={toggleProfile}
                 className="flex items-center gap-2 text-white px-4 py-2 focus:outline-none cursor-pointer"
               >
-                {profile?.data?.profilePhoto ? (
+                {profile?.data?.avatar ? (
                   <Image
-                    src={profile?.data?.profilePhoto}
+                    src={profile?.data?.avatar}
                     alt="profile"
                     width={40}
                     height={40}
