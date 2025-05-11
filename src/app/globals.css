@@ -10,12 +10,17 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-sansita: "sansita";
+  --font-lobster: "lobster";
+  --font-arima: "arima";
+  --font-oleo_script: "oleo_script";
+  --font-agbalumo: "agbalumo";
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ededed;
+    --foreground: #0a0a0a;
   }
 }
 
