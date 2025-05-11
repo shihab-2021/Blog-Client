@@ -121,7 +121,12 @@ const BlogCard = ({
       className="bg-white rounded-2xl shadow-md overflow-hidden  w-full mb-4 border border-gray-100 relative"
     >
       <div className="p-4 space-y-3">
-        <h3 className="text-xl font-semibold line-clamp-2">{title}</h3>
+        <Link
+          href={`/blogPost/${_id}`}
+          className="text-xl font-semibold line-clamp-2"
+        >
+          {title}
+        </Link>
         <p className="text-sm text-gray-500">
           {new Date(createdAt).toDateString()}
         </p>

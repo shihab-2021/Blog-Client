@@ -97,7 +97,7 @@ const Layout = ({ children }) => {
   ];
   const visitorRoutes = [
     {
-      path: "/dashboard/customer/profile",
+      path: `/dashboard/profile/${profile?.data?._id}`,
       name: "My Profile",
       icon: UserPen,
     },
