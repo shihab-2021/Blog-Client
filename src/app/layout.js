@@ -38,6 +38,11 @@ const agbalumo = Agbalumo({
   weight: ["400"],
 });
 
+export const metadata = {
+  title: "BlogNest",
+  description: "Keep explore, keep taking knowledge, be happy",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

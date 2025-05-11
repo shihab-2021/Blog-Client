@@ -37,7 +37,7 @@ export default function Register() {
     }
   };
   return (
-    <div className="min-h-screen flex justify-center items-center font-arima bg-white text-black">
+    <div className="min-h-screen flex justify-center items-center font-sansita bg-white text-black">
       <div className="border-2 border-gray-200 shadow-lg rounded-2xl flex-grow max-w-md w-full p-6 bg-white my-20">
         {/* Logo & Title */}
         <div className="flex items-center space-x-4 mb-4">
@@ -50,7 +50,7 @@ export default function Register() {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="name">Email</label>
+          <label htmlFor="name">Name</label>
           <input
             {...register("name")}
             type="text"
