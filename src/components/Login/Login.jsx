@@ -49,7 +49,7 @@ const LoginPage = () => {
   return (
     <>
       <Suspense>
-        <div className="min-h-screen flex justify-center items-center font-arima text-black">
+        <div className="min-h-screen flex justify-center items-center font-sansita text-black">
           <div className="border-2 border-gray-300 rounded-xl max-w-md w-full p-5">
             <div className="flex items-center space-x-4 mb-4">
               <div>
