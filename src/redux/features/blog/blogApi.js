@@ -23,7 +23,7 @@ const blogApi = baseApi.injectEndpoints({
         method: "POST",
         body: commentData,
       }),
-      invalidatesTags: ["blog"],
+      invalidatesTags: ["blog", "comments"],
     }),
     getBlogComments: builder.query({
       query: (id) => ({
@@ -66,7 +66,7 @@ const blogApi = baseApi.injectEndpoints({
         method: "PATCH",
         body: blogData?.data,
       }),
-      invalidatesTags: ["blogs"],
+      invalidatesTags: ["blogs", "blog"],
     }),
     deleteBlog: builder.mutation({
       query: (id) => ({

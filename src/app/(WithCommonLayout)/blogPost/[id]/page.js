@@ -15,6 +15,7 @@ const BlogDetails = ({ params }) => {
   } = useGetSingleBlogDetailsQuery(blogId, {
     skip: !blogId,
     refetchOnReconnect: true,
+    refetch: true,
   });
 
   useEffect(() => {
