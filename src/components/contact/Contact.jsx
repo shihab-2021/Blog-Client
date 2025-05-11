@@ -1,6 +1,6 @@
 const Contact = () => {
   return (
-    <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-32 mb-12 bg-white shadow-lg rounded-lg text-center animate-slideUp">
+    <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-32 mb-12 bg-white shadow-lg rounded-lg text-center animate-slideUp font-sansita">
       <div className="font-sen font-semibold text-base uppercase tracking-wider text-purple-600 mb-4">
         Contact Us
       </div>
@@ -8,8 +8,7 @@ const Contact = () => {
         Let's Start a Conversation
       </h1>
       <p className="font-inter text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
+        Keep explore, keep taking knowledge, be happy
       </p>
       <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 md:p-8 flex flex-col md:flex-row justify-between gap-6 mb-8 rounded-lg shadow-xl">
         <div className="flex-1 text-left">

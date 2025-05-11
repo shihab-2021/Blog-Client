@@ -36,7 +36,7 @@ const Blogger = ({ headerData }) => {
   };
 
   return (
-    <div className="max-w-[936px] mx-auto mt-32 mb-4 px-4 sm:px-6 lg:px-8">
+    <div className="max-w-[936px] mx-auto mt-20 mb-4 px-4 sm:px-6 lg:px-8">
       <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md animate-slideUp">
         <img
           src={headerData?.avatar || "/Resources/blogPost/Author.png"}
@@ -63,7 +63,7 @@ const Blogger = ({ headerData }) => {
           onClick={handleAddLike}
           className={`flex items-center gap-2 text-green-600 bg-gray-100 px-3 py-2 rounded-full hover:bg-green-100 hover:scale-110 transition-all duration-300 ${
             isLoadingLike ? "animate-pulse" : ""
-          }`}
+          } cursor-pointer`}
           disabled={isLoadingLike}
         >
           <ThumbsUp size={20} /> <span>{headerData?.totalLike}</span>
@@ -72,7 +72,7 @@ const Blogger = ({ headerData }) => {
           onClick={handleAddDislike}
           className={`flex items-center gap-2 text-red-500 bg-gray-100 px-3 py-2 rounded-full hover:bg-red-100 hover:scale-110 transition-all duration-300 ${
             isLoadingDislike ? "animate-pulse" : ""
-          }`}
+          } cursor-pointer`}
           disabled={isLoadingDislike}
         >
           <ThumbsDown size={20} /> <span>{headerData?.totalDislike}</span>

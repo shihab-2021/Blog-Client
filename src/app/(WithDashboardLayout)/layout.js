@@ -12,6 +12,7 @@ import {
 /* eslint-disable @next/next/no-sync-scripts */
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -20,9 +21,10 @@ const Layout = ({ children }) => {
   const [screenSmall, setScreenSmall] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
   const token = useSelector(useCurrentToken);
-  const { data: profile } = useProfileQuery(token);
+  const [profile, setProfile] = useState({});
   const [routes, setRoutes] = useState([]);
   const dispatch = useDispatch();
+  const router = useRouter();
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWindowWidth(window.innerWidth);
@@ -37,6 +39,29 @@ const Layout = ({ children }) => {
   const handleClick = () => {
     setToggleButton(!toggleButton);
   };
+
+  const getCurrentProfile = async () => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API}/auth/profile`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await res.json();
+      setProfile(data);
+      // return data?.data;
+    } catch (error) {
+      return Error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getCurrentProfile();
+  }, [token]);
 
   useEffect(() => {
     if (profile?.data?.email) {
@@ -170,7 +195,10 @@ const Layout = ({ children }) => {
                       <li>
                         <a
                           className="block p-2 cursor-pointer mb-2 leading-loose text-xs text-center text-white font-semibold bg-[#e61d4f] hover:bg-red-700  rounded-xl"
-                          onClick={() => dispatch(logout())}
+                          onClick={() => {
+                            dispatch(logout());
+                            router.push("/");
+                          }}
                         >
                           Sign Out
                         </a>
@@ -304,9 +332,9 @@ const Layout = ({ children }) => {
                 </div>
               </footer>
               <p className="text-center text-sm text-gray-500 my-10">
-                &copy; 2023{" "}
+                &copy; 2025{" "}
                 <a href="#" className="hover:underline" target="_blank">
-                  Full Stack Force
+                  BlogNest
                 </a>
                 . All rights reserved.
               </p>

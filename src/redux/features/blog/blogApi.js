@@ -80,7 +80,28 @@ const blogApi = baseApi.injectEndpoints({
         url: `/blogs/suspend/${id}`,
         method: "PUT",
       }),
-      invalidatesTags: ["blogs"],
+      invalidatesTags: ["blogs", "allBlogs"],
+    }),
+    getAdminDashboardStats: builder.query({
+      query: () => ({
+        url: `/blogs/dashboard-stats`,
+        method: "GET",
+      }),
+      providesTags: [],
+    }),
+    suspendComment: builder.mutation({
+      query: (data) => ({
+        url: `/blogs/comment-suspend/blog/${data?.blogId}/comment/${data?.commentId}`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["blogs", "blog"],
+    }),
+    getAllBlogForAdmin: builder.query({
+      query: () => ({
+        url: "/blogs/admin/blogs",
+        method: "GET",
+      }),
+      providesTags: ["allBlogs"],
     }),
   }),
 });
@@ -97,4 +118,7 @@ export const {
   useUpdateBlogMutation,
   useDeleteBlogMutation,
   useSuspendBlogMutation,
+  useGetAdminDashboardStatsQuery,
+  useSuspendCommentMutation,
+  useGetAllBlogForAdminQuery,
 } = blogApi;

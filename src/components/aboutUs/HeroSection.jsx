@@ -13,10 +13,8 @@ const HeroSection = () => {
           </div>
           <div className="w-full sm:w-1/2 p-6">
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed text-justify">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking.
             </p>
           </div>
         </div>
@@ -68,10 +66,11 @@ const HeroSection = () => {
             Creating valuable content for creatives all around the world
           </h1>
           <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Non
-            blandit massa enim nec. Scelerisque viverra mauris in aliquam sem.
-            At risus viverra adipiscing at in tellus.
+            The industry's standard dummy text ever since the 1500s, when an
+            unknown printer took a galley of type and scrambled it to make a
+            type specimen book. It has survived not only five centuries, but
+            also the leap into electronic typesetting, remaining essentially
+            unchanged.
           </p>
         </div>
         <div className="w-full lg:w-1/2 p-6">
@@ -82,10 +81,10 @@ const HeroSection = () => {
             A platform that empowers individuals to improve
           </h1>
           <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Non
-            blandit massa enim nec. Scelerisque viverra mauris in aliquam sem.
-            At risus viverra adipiscing at in tellus.
+            It was popularised in the 1960s with the release of Letraset sheets
+            containing Lorem Ipsum passages, and more recently with desktop
+            publishing software like Aldus PageMaker including versions of Lorem
+            Ipsum.
           </p>
         </div>
       </div>
@@ -96,15 +95,14 @@ const HeroSection = () => {
             OUR TEAM
           </h3>
           <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 tracking-tight mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt.
+            A united world, connected by technology
           </h1>
           <p className="text-base sm:text-lg text-gray-600 leading-relaxed border-b-4 border-yellow-400 pb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+            It is a long established fact that a reader will be distracted by
+            the readable content of a page when looking. The point of using
+            Lorem Ipsum is that it has a more-or-less normal distribution of
+            letters. Many desktop publishing packages and web page editors now
+            use Lorem Ipsum.
           </p>
         </div>
         <div className="w-full lg:w-1/2 p-6">
@@ -122,15 +120,14 @@ const HeroSection = () => {
             OUR TEAM
           </h3>
           <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 tracking-tight mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt.
+            We are a team of content writers who share their learnings
           </h1>
           <p className="text-base sm:text-lg text-gray-600 leading-relaxed border-b-4 border-purple-600 pb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat.
+            The industry's standard dummy text ever since the 1500s, when an
+            unknown printer took a galley of type and scrambled it to make a
+            type specimen book. It has survived not only five centuries, but
+            also the leap into electronic typesetting, remaining essentially
+            unchanged.
           </p>
         </div>
         <div className="w-full lg:w-1/2 p-6">

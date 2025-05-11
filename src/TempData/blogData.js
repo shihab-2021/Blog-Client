@@ -34,10 +34,42 @@ export const blogPosts = [
 ];
 
 export const categories = [
-  { name: "Startup", icon: "/icon1.png" },
-  { name: "Business", icon: "/icon.png" },
-  { name: "Economy", icon: "/icon2.png" },
-  { name: "Technology", icon: "/cyborg.png" },
+  {
+    name: "Creative",
+    description: "Explore imaginative ideas, art, and original content.",
+  },
+  {
+    name: "Inspiration",
+    description: "Motivational stories and insights to spark your drive.",
+  },
+  {
+    name: "Lifestyle",
+    description: "Tips and trends for a balanced and fulfilling lifestyle.",
+  },
+  {
+    name: "News",
+    description: "Stay updated with the latest events and breaking news.",
+  },
+  {
+    name: "Photography",
+    description: "Showcasing visual stories, tips, and camera techniques.",
+  },
+  {
+    name: "Skill",
+    description: "Learn and improve practical and professional skills.",
+  },
+  {
+    name: "Tourist Tours",
+    description: "Guides and experiences from travel and tourism.",
+  },
+  {
+    name: "Trending",
+    description: "What’s hot right now across the web and culture.",
+  },
+  {
+    name: "Education",
+    description: "Resources and insights for learners and educators.",
+  },
 ];
 
 export const tags = [
