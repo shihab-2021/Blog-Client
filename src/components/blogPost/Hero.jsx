@@ -58,7 +58,7 @@ const Hero = ({ blogData }) => {
 
   return (
     <>
-      <section className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 animate-fadeIn">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 animate-fadeIn">
         <img
           src={blogData?.thumbnail || "/Resources/blogPost/Hero.png"}
           alt="Hero Image"
@@ -71,14 +71,14 @@ const Hero = ({ blogData }) => {
         />
       </section>
 
-      <section className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-20 animate-slideUp">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 pb-7 animate-slideUp mt-4">
         <div
-          className="prose prose-lg prose-gray max-w-none"
+          className="prose prose-lg prose-gray max-w-none font-sansita"
           dangerouslySetInnerHTML={{ __html: blogData?.content }}
         />
       </section>
 
-      <section className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-20 animate-slideUp">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 pb-20 animate-slideUp">
         <div className="my-6">
           <h1 className="font-sen font-bold text-2xl md:text-3xl text-gray-900 mb-4">
             Your Comment:

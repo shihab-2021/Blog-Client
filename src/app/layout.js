@@ -1,4 +1,10 @@
-import { Sansita, Lobster, Arima, Oleo_Script } from "next/font/google";
+import {
+  Sansita,
+  Lobster,
+  Arima,
+  Oleo_Script,
+  Agbalumo,
+} from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import Providers from "@/providers/Providers";
@@ -26,11 +32,17 @@ const lobster = Lobster({
   weight: ["400"],
 });
 
+const agbalumo = Agbalumo({
+  variable: "--font-agbalumo",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${sansita.variable} ${arima.variable} ${oleo_script.variable} ${lobster.variable} antialiased`}
+        className={`${sansita.variable} ${arima.variable} ${oleo_script.variable} ${lobster.variable} ${agbalumo.variable} antialiased`}
       >
         <Toaster richColors position="top-center" />
         <Providers>{children}</Providers>

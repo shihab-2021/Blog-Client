@@ -36,7 +36,7 @@ const Blogger = ({ headerData }) => {
   };
 
   return (
-    <div className="max-w-[936px] mx-auto mt-32 mb-4 px-4 sm:px-6 lg:px-8">
+    <div className="max-w-[936px] mx-auto mt-20 mb-4 px-4 sm:px-6 lg:px-8">
       <div className="bg-white p-6 sm:p-8 rounded-lg shadow-md animate-slideUp">
         <img
           src={headerData?.avatar || "/Resources/blogPost/Author.png"}

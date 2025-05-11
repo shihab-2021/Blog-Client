@@ -161,12 +161,12 @@ const BlogCard = ({
           <button
             onClick={() => handleSuspend(_id)}
             className={`flex items-center gap-1 cursor-pointer mt-2 px-4 py-2 rounded-lg text-sm font-medium ${
-              isPublic
+              !isPublic
                 ? "focus:ring-green-700 bg-green-100 text-green-700 hover:bg-green-200"
                 : "focus:ring-red-700 bg-red-100 text-red-700 hover:bg-red-200"
             } hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-95 transition-all duration-300 cursor-pointer`}
           >
-            {isPublic ? (
+            {!isPublic ? (
               <>
                 <ToggleRight size={25} className="text-green-500" />
                 Unsuspend
@@ -195,7 +195,7 @@ const BlogCard = ({
             >
               <Trash2 size={20} />
             </button>
-            {isPublic && (
+            {!isPublic && (
               <span
                 className=" bg-red-100 text-red-700 hover:bg-red-200 transition p-2 rounded-md cursor-not-allowed text-xs"
                 title="Suspended"

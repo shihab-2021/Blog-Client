@@ -6,6 +6,8 @@ import {
   useGetSingleBlogDetailsQuery,
   useUpdateBlogMutation,
 } from "@/redux/features/blog/blogApi"; // Make sure this exists
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const EditBlogForm = ({ params }) => {
   const editor = useRef(null);
@@ -20,6 +22,7 @@ const EditBlogForm = ({ params }) => {
   );
   const [imageLoading, setImageLoading] = useState(false);
   const [image, setImage] = useState(blog?.thumbnail || "");
+  const router = useRouter();
 
   useEffect(() => {
     (async () => {
@@ -124,14 +127,18 @@ const EditBlogForm = ({ params }) => {
         id: blog?.data?._id,
         data: updatedBlog,
       }).unwrap();
-      // Optional: redirect or show success message
+
+      if (result?.success) {
+        toast.success("Blog updated successfully!");
+        router.push(`/blogPost/${blog?.data?._id}`);
+      }
     } catch (error) {
       console.error("Update failed:", error);
     }
   };
 
   return (
-    <div className="py-24 bg-white text-black">
+    <div className="py-24 bg-white text-black font-sansita">
       <form
         onSubmit={handleSubmit}
         className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg space-y-6 border border-gray-100"
@@ -252,7 +259,7 @@ const EditBlogForm = ({ params }) => {
 
         <button
           type="submit"
-          className="bg-[#4b5563] hover:bg-[#374151] text-white px-6 py-2 rounded"
+          className="bg-[#4b5563] hover:bg-[#374151] text-white px-6 py-2 rounded cursor-pointer"
         >
           {isLoading ? "Updating..." : "Update Blog"}
         </button>

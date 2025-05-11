@@ -14,7 +14,7 @@ const LoginPage = () => {
   const [login] = useLoginMutation();
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirectPath");
+  const redirect = searchParams.get("redirect");
   const router = useRouter();
 
   const {
@@ -33,9 +33,11 @@ const LoginPage = () => {
       if (res?.success) {
         toast.success("Successfully Logged In!");
         if (redirect) {
-          router.push(redirect);
+          // router.push(redirect);
+          window.location.href = redirect;
         } else {
-          router.push("/");
+          // router.push("/");
+          window.location.href = "/";
         }
       } else {
         toast.error(res?.error);

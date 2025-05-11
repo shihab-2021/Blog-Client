@@ -1,14 +1,18 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import JoditEditor from "jodit-react";
+import dynamic from "next/dynamic";
+const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 import { useCreateBlogMutation } from "@/redux/features/blog/blogApi";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const BlogForm = () => {
   const editor = useRef(null);
   const [createBlog, { isLoading }] = useCreateBlogMutation();
   const [imageLoading, setImageLoading] = useState(false);
   const [image, setImage] = useState("");
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -93,27 +97,41 @@ const BlogForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const blogData = {
-      ...formData,
-      tags: formData.tags.split(",").map((tag) => tag.trim()), // convert to array
-    };
-    const result = await createBlog(blogData).unwrap();
-    // console.log("Submitted Blog Data:", blogData);
-    // Handle form submit logic (API call etc.)
+    try {
+      const blogData = {
+        ...formData,
+        tags: formData.tags.split(",").map((tag) => tag.trim()), // convert to array
+      };
+      const result = await createBlog(blogData).unwrap();
+      if (result?.success) {
+        toast.success("Blog added successfully!");
+        router.push(`/blogPost/${result?.data?._id}`);
+      }
+      // console.log("Submitted Blog Data:", blogData);
+      // Handle form submit logic (API call etc.)
+    } catch (error) {}
   };
 
   return (
-    <div className="py-24 bg-white text-black">
+    <div className="py-24 text-black font-sansita">
       <form
         onSubmit={handleSubmit}
         className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg space-y-6 border border-gray-100"
       >
-        <h2 className="text-2xl font-semibold text-center">
-          Create a New Blog
-        </h2>
+        <div className="text-center">
+          <div className="font-sen font-semibold text-base uppercase tracking-wider text-purple-600 mb-4">
+            Create New Blog
+          </div>
+          <h1 className="font-sen font-bold text-3xl md:text-4xl text-gray-900 mb-4">
+            Hello! here is <span className="font-agbalumo">BlogNest</span>
+          </h1>
+          <p className="font-inter text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8">
+            Shear your blog or documentation
+          </p>
+        </div>
 
         <div>
-          <label className="block mb-1 font-medium">Title</label>
+          <label className="block mb-1 font-bold">Title</label>
           <input
             type="text"
             name="title"
@@ -125,7 +143,7 @@ const BlogForm = () => {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">Category</label>
+          <label className="block mb-1 font-bold">Category</label>
           <select
             name="category"
             value={formData.category}
@@ -151,7 +169,7 @@ const BlogForm = () => {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">Thumbnail URL</label>
+          <label className="block mb-1 font-bold">Thumbnail URL</label>
 
           <div className="">
             <div className="rounded-lg border-2 border-dotted border-gray-400 p-3 text-center">
@@ -224,9 +242,7 @@ const BlogForm = () => {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">
-            Tags (comma-separated)
-          </label>
+          <label className="block mb-1 font-bold">Tags (comma-separated)</label>
           <input
             type="text"
             name="tags"
@@ -237,7 +253,7 @@ const BlogForm = () => {
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">Blog Content</label>
+          <label className="block mb-1 font-bold">Blog Content</label>
           <JoditEditor
             ref={editor}
             value={formData.content}
@@ -248,9 +264,10 @@ const BlogForm = () => {
 
         <button
           type="submit"
-          className="bg-[#4b5563] hover:bg-[#374151] text-white px-6 py-2 rounded"
+          className="bg-[#4b5563] hover:bg-[#374151] text-white px-6 py-2 rounded cursor-pointer"
+          disabled={isLoading}
         >
-          Submit Blog
+          {isLoading ? "Submitting..." : "Submit Blog"}
         </button>
       </form>
     </div>
